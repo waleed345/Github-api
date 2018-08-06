@@ -1,0 +1,50 @@
+*{
+    margin: 0;
+    padding: 0
+}
+
+body{
+    background-color:#eee;
+}
+
+.output-data{
+    background-color: white;
+    border-radius: 5px;
+}
+
+.main-box{
+    display: flex;
+    justify-content: space-evenly;
+    flex-flow: wrap;
+}
+
+.follower{
+    margin-bottom: 8px;
+    display: flex;
+    flex-basis: 48%;
+    background-color: lightgray;
+    padding: 5px;}
+
+.follower > .img{
+    border: 1px solid white;
+    flex-basis: 15%;
+}
+
+.follower > .detail{
+    flex-basis: 85%;
+}
+
+@media (min-width:280px) and (max-width:768px){
+    .follower{
+        flex-basis:unset;
+    }
+
+    .follower > .img{
+        border: 1px solid white;
+        flex-basis: 30%;
+    }
+    
+    .follower > .detail{
+        flex-basis: 70%;
+    }
+}
