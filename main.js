@@ -13,7 +13,7 @@ function getData(){
         return response.json();
     }).then(data => {
         console.log('data from fetch api',data);
-        $('#user_name').text(user)
+        $('#user_name').text(user +' has '+ data.length +' Followers')
         data.map(function(key,index){
             // console.log(key.avatar_url);
             $('#display').append(

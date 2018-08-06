@@ -45,21 +45,21 @@ self.addEventListener('activate', function (e) {
 })
 
 self.addEventListener('fetch',function(e){
-    if(e.request.url.startsWith('https://api.github.com/users')){
-        caches.open(dcache).then(function(cache){
-            return fetch(e.request).then(function(response){
-                cache.put(e.request, response.clone())
+    e.respondWith(
+        caches.match(e.request).then(function(response) {
+            if(response){
                 return response
-            })
+            }else{
+                return fetch(e.request).then((response) => {
+                    caches.open(dcache).then(cache => {
+                        cache.put(e.request, response.clone());
+                    })
+                    return response.clone();                     
+                }).catch(err => {
+                    console.log(err)
+                })
+            }
         })
-    }else{
-        e.respondWith(
-            caches.match(e.request).then(function(response){
-                return response || fetch(e.request)
-            }).catch(err => {
-                console.log(err)
-            })
-        )
-    }
+    )
    
 })
